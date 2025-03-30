@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
-
-const schema = z.object({
-  title: z.string().min(3).max(255),
-  description: z.string().min(5),
-});
+import { bugSchema } from '../../../schemas';
 
 export async function GET() {
   try {
@@ -24,7 +19,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid Json' }, { status: 400 });
   }
 
-  const validation = schema.safeParse(body);
+  const validation = bugSchema.safeParse(body);
 
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
