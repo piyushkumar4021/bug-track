@@ -1,48 +1,48 @@
 'use client';
-import { TextField, Text, Button, Callout } from '@radix-ui/themes';
+import { TextField, Text, Button } from '@radix-ui/themes';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { bugSchema } from '../../../schemas';
 import axios from 'axios';
+import ErrorMessage from '../../../components/ErrorMessage';
 
 const initialData = {
   title: '',
   description: '',
 };
 
+interface ErrorType {
+  title?: string;
+  description?: string;
+}
+
 export default function CreateBugPage() {
   const [data, setData] = useState(initialData);
-  const [errors, setErrors] = useState<null | {
-    title?: string;
-    description?: string;
-  }>(null);
+  const [errors, setErrors] = useState<null | ErrorType>(null);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const validation = bugSchema.safeParse(data);
+
+    if (!validation.success) {
+      const newErrors = validation.error.errors.reduce(
+        (obj, err) => Object.assign(obj, { [err.path[0]]: err.message }),
+        {}
+      );
+
+      return setErrors(newErrors);
+    }
+
+    setErrors({});
+
+    await axios.post('http://localhost:3000/api/bugs', JSON.stringify(data));
+    setData(initialData);
+  };
 
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-
-        const validation = bugSchema.safeParse(data);
-
-        if (!validation.success) {
-          const newErrors = validation.error.errors.reduce(
-            (obj, err) => Object.assign(obj, { [err.path[0]]: err.message }),
-            {}
-          );
-          console.log(newErrors);
-          return setErrors(newErrors);
-        }
-
-        setErrors({});
-
-        await axios.post(
-          'http://localhost:3000/api/bugs',
-          JSON.stringify(data)
-        );
-        setData(initialData);
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <div className='flex flex-col gap-y-4 mb-5'>
         <label>
           <Text as='div' size='2' mb='1' weight='bold'>
@@ -55,11 +55,7 @@ export default function CreateBugPage() {
               setData((prevData) => ({ ...prevData, title: e.target.value }))
             }
           />
-          {errors?.title && (
-            <Callout.Root color='red'>
-              <Callout.Text>{errors.title}</Callout.Text>
-            </Callout.Root>
-          )}
+          <ErrorMessage>{errors?.title}</ErrorMessage>
         </label>
         <label>
           <Text as='div' size='2' mb='1' weight='bold'>
@@ -72,11 +68,7 @@ export default function CreateBugPage() {
               setData((prevData) => ({ ...prevData, description: value }))
             }
           />
-          {errors?.description && (
-            <Callout.Root color='red'>
-              <Callout.Text>{errors.description}</Callout.Text>
-            </Callout.Root>
-          )}
+          <ErrorMessage>{errors?.description}</ErrorMessage>
         </label>
       </div>
 
