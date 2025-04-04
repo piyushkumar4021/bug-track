@@ -1,11 +1,10 @@
 import { Table } from '@radix-ui/themes';
-import { prisma } from '../../lib/prisma';
-import BugStatusBadge from '../../components/BugStatusBadge';
 import BugsActions from './BugsActions';
+import Skeleton from '../../components/Skeleton';
 
-export default async function BugsPage() {
-  const bugs = await prisma.bug.findMany();
+const skeletons = [1, 2, 3];
 
+export default function BugsPageSkeleton() {
   return (
     <div>
       <BugsActions />
@@ -13,30 +12,32 @@ export default async function BugsPage() {
       <Table.Root variant='surface' size={'3'}>
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className='hidden md:table-cell'>
-              Status
+            <Table.ColumnHeaderCell>
+              <Skeleton />
             </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className='hidden md:table-cell'>
-              Created At
+              <Skeleton />
+            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell className='hidden md:table-cell'>
+              <Skeleton />
             </Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
-          {bugs.map((bug) => (
-            <Table.Row key={bug.id}>
+          {skeletons.map((i) => (
+            <Table.Row key={i}>
               <Table.RowHeaderCell>
-                {bug.title}
+                <Skeleton />
                 <div className='md:hidden'>
-                  <BugStatusBadge status={bug.status} />
+                  <Skeleton />
                 </div>
               </Table.RowHeaderCell>
               <Table.Cell className='hidden md:table-cell'>
-                <BugStatusBadge status={bug.status} />
+                <Skeleton />
               </Table.Cell>
               <Table.Cell className='hidden md:table-cell'>
-                {bug.createdAt.toDateString()}
+                <Skeleton />
               </Table.Cell>
             </Table.Row>
           ))}
