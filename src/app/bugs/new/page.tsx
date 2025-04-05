@@ -42,7 +42,7 @@ export default function CreateBugPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='max-w-xl'>
       <div className='flex flex-col gap-y-4 mb-5'>
         <label>
           <Text as='div' size='2' mb='1' weight='bold'>

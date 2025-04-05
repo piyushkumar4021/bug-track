@@ -1,6 +1,5 @@
-import { Table } from '@radix-ui/themes';
+import { Skeleton, Table } from '@radix-ui/themes';
 import BugsActions from './BugsActions';
-import Skeleton from '../../components/Skeleton';
 
 const skeletons = [1, 2, 3];
 

@@ -3,6 +3,7 @@ import { prisma } from '../../../lib/prisma';
 import { Card, Flex, Heading, Text } from '@radix-ui/themes';
 import BugStatusBadge from '../../../components/BugStatusBadge';
 import ReactMarkdown from 'react-markdown';
+import { delay } from '../../../utils';
 
 interface Props {
   params: {
@@ -18,7 +19,7 @@ export default async function BugsDescriptionPage({ params }: Props) {
   });
 
   if (!bug) notFound();
-
+  await delay();
   return (
     <div>
       <Heading>{bug.title}</Heading>
