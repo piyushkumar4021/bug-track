@@ -1,11 +1,15 @@
 'use client';
 import { TextField, Text, Button } from '@radix-ui/themes';
-import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import { FormEvent, useState } from 'react';
 import { bugSchema } from '../../../schemas';
 import axios from 'axios';
 import ErrorMessage from '../../../components/ErrorMessage';
+import dynamic from 'next/dynamic';
+
+const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
+  ssr: false,
+});
 
 const initialData = {
   title: '',
