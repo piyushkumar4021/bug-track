@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenVolt Energy - Sustainable Power Solutions</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-
+QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-
+icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-
+YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --primary-color: #2ecc71;
+        --secondary-color: #27ae60;
+        --accent-color: #f39c12;
+      }
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url('https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        min-height: 500px;
+      }
+      .service-card:hover {
+        transform: translateY(-10px);
+        transition: transform 0.3s ease;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+      .bg-primary {
+        background-color: var(--primary-color) !important;
+      }
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--secondary-color);
+      }
+      .btn-primary:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--primary-color);
+      }
+      .text-primary {
+        color: var(--primary-color) !important;
+      }
+      .border-primary {
+        border-color: var(--primary-color) !important;
+      }
+      .navbar {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        border-bottom: none;
+      }
+      .accordion-button:not(.collapsed) {
+        background-color: rgba(46, 204, 113, 0.1);
+        color: var(--primary-color);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+          <i
+            class="bi bi-lightning-charge-fill me-2"
+            style="color: var(--primary- color)"
+          ></i
+          >GreenVolt Energy
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-
+          target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home"
+                ><i class="bi bi- house-door me-1"></i>Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about"
+                ><i class="bi bi-info-circle me-1"></i>About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services"
+                ><i class="bi bi-gear me- 1"></i>Services</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects"
+                ><i class="bi bi-grid me- 1"></i>Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact"
+                ><i class="bi bi-envelope me-1"></i>Contact</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="bi bi-three-dots-vertical me-1"></i>More
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-house-door me- 2"></i>Doorstep Service</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-building me- 2"></i>Service Center</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-tree me-2"></i>Eco- Assistance</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <header id="home" class="hero-section text-white d-flex align-items-center">
+      <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">Sustainable Energy Solutions</h1>
+        <p class="lead mb-4">
+          Powering the future with clean, efficient energy
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="#services" class="btn btn-primary btn-lg px-4">
+            <i class="bi bi-lightning-charge me-2"></i>Our Services
+          </a>
+          <a href="#contact" class="btn btn-outline-light btn-lg px-4">
+            <i class="bi bi-chat-square-text me-2"></i>Get a Quote
+          </a>
+        </div>
+      </div>
+    </header>
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="display-5 fw-bold mb-4">About GreenVolt Energy</h2>
+            <div class="d-flex align-items-center mb-3">
+              <div
+                class="spinner-border text-primary me-3"
+                role="status"
+                id="loadingSpinner"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <p class="lead mb-0">Loading our mission statement...</p>
+            </div>
+            <div id="aboutContent" class="d-none">
+              <p class="text-muted mb-4">
+                We are pioneers in delivering innovative energy- saving
+                solutions and reliable power distribution services. Our team of
+                experts combines cutting-edge technologies with sustainable
+                practices to optimize energy usage and reduce environmental
+                impact.
+              </p>
+              <div class="d-flex flex-wrap gap-2 mb-4">
+                <span class="badge bg-success rounded-pill p-2"
+                  ><i class="bi bi-check-circle me-1"></i>Certified Energy
+                  Experts</span
+                >
+                <span class="badge bg-primary rounded-pill p-2"
+                  ><i class="bi bi-award me- 1"></i>ISO 14001 Certified</span
+                >
+                <span class="badge bg-warning text-dark rounded-pill p-2"
+                  ><i class="bi bi- star-fill me-1"></i>Industry Leaders</span
+                >
+              </div>
+              <h3 class="h4 fw-bold mb-3">Our Vision</h3>
+              <p class="text-muted">
+                To create a world where clean, affordable energy is accessible
+                to all while preserving our planet for future generations.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="https://images.unsplash.com/photo-1509391366360-
+2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Solar Panels"
+              class="img-fluid rounded-4 shadow-lg"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-5 fw-bold">Our Services</h2>
+          <p class="lead text-muted">
+            Comprehensive energy solutions for homes and businesses
+          </p>
+        </div>
+        <div class="row g-4">
+          <!-- Energy Audits Card -->
+          <div class="col-md-4">
+            <div class="card service-card h-100 border-0 shadow-sm">
+              <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">
+                  <i class="bi bi-graph-up me-2"></i>Energy Audits
+                </h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Our comprehensive energy audits identify inefficiencies and
+                  provide actionable recommendations to reduce your energy
+                  consumption and costs.
+                </p>
+                <ul class="list-group list-group-flush mb-3">
+                  <li class="list-group-item">
+                    <i class="bi bi-check-circle-fill text-success me- 2"></i
+                    >Detailed consumption analysis
+                  </li>
+                  <li class="list-group-item">
+                    <i class="bi bi-check-circle-fill text-success me- 2"></i
+                    >Custom efficiency recommendations
+                  </li>
+                  <li class="list-group-item">
+                    <i class="bi bi-check-circle-fill text-success me- 2"></i
+                    >Cost-saving implementation plan
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer bg-transparent">
+                <button class="btn btn-outline-primary w-100">
+                  <i class="bi bi-arrow-right-circle me-2"></i>Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Smart Grid Card -->
+          <div class="col-md-4">
+            <div class="card service-card h-100 border-0 shadow-sm">
+              <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">
+                  <i class="bi bi-cpu me-2"></i>Smart Grid Solutions
+                </h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Transform your energy infrastructure with our intelligent grid
+                  technologies that optimize distribution and reduce waste.
+                </p>
+                <div class="progress mb-3">
+                  <div
+                    class="progress-bar bg-success progress-bar-striped progress-bar- animated"
+                    role="progressbar"
+                    style="width: 92%"
+                  >
+                    Efficiency: 92%
+                  </div>
+                </div>
+                <div
+                  class="d-flex justify-content-between small text-muted mb-2"
+                >
+                  <span>Before</span>
+                  <span>After</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-secondary"
+                    role="progressbar"
+                    style="width: 55%"
+                  ></div>
+                  <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    style="width: 45%"
+                  ></div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent">
+                <button class="btn btn-outline-success w-100">
+                  <i class="bi bi-arrow-right-circle me-2"></i>Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Renewable Energy Card -->
+          <div class="col-md-4">
+            <div class="card service-card h-100 border-0 shadow-sm">
+              <div class="card-header bg-warning text-dark">
+                <h5 class="card-title mb-0">
+                  <i class="bi bi-sun me-2"></i>Renewable Energy
+                </h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Transition to clean energy with our solar, wind, and hydro
+                  solutions tailored to your specific needs and location.
+                </p>
+                <div class="row text-center">
+                  <div class="col-4">
+                    <i class="bi bi-sun-fill text-warning fs-3"></i>
+                    <div class="small">Solar</div>
+                  </div>
+                  <div class="col-4">
+                    <i class="bi bi-wind text-info fs-3"></i>
+                    <div class="small">Wind</div>
+                  </div>
+                  <div class="col-4">
+                    <i
+                      class="bi bi-lightning-charge-fill text-primary fs-3"
+                    ></i>
+                    <div class="small">Storage</div>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <span class="badge bg-primary me-1">Zero Emissions</span>
+                  <span class="badge bg-success">Tax Incentives</span>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent">
+                <button class="btn btn-outline-warning w-100">
+                  <i class="bi bi-arrow-right-circle me-2"></i>Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Form -->
+    <section id="contact" class="py-5 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="display-5 fw-bold mb-4 text-center">Get In Touch</h2>
+            <form class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Please provide your first name.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Please provide your last name.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="email" class="form-label">Email</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text">@</span>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please provide a valid email address.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    pattern="[0-9]{10}"
+                  />
+                  <div class="invalid-feedback">
+                    Please provide a valid 10-digit phone number.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="service" class="form-label"
+                    >Service Interest</label
+                  >
+                  <select class="form-select" id="service" required>
+                    <option value="" selected disabled>Choose...</option>
+                    <option>Energy Audits</option>
+                    <option>Smart Grid Solutions</option>
+                    <option>Renewable Energy</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a service.</div>
+                </div>
+                <div class="col-12">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    rows="4"
+                    required
+                  ></textarea>
+                  <div class="invalid-feedback">Please provide a message.</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="agree"
+                      required
+                    />
+                    <label class="form-check-label" for="agree">
+                      I agree to the terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button
+                    class="btn btn-primary px-4 py-2"
+                    type="submit"
+                    style="min-
+width: 200px;"
+                  >
+                    <i class="bi bi-send-fill me-2"></i>Submit Inquiry
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="py-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold mb-4 text-center">
+          Frequently Asked Questions
+        </h2>
+        <div class="accordion" id="faqAccordion">
+          <div
+            class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden"
+          >
+            <h3 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-
+                toggle="collapse"
+                data-bs-target="#collapseOne"
+              >
+                <i class="bi bi-question-circle me-2 text-primary"></i> How can
+                I reduce my energy consumption?
+              </button>
+            </h3>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse"
+              aria-
+              labelledby="headingOne"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                <p>
+                  There are several effective ways to reduce energy consumption:
+                </p>
+                <ul>
+                  <li>
+                    Upgrade to energy-efficient appliances with ENERGY STAR
+                    ratings
+                  </li>
+                  <li>
+                    Install smart thermostats to optimize heating and cooling
+                  </li>
+                  <li>
+                    Switch to LED lighting throughout your home or business
+                  </li>
+                  <li>Improve insulation and seal air leaks</li>
+                  <li>
+                    Consider our professional energy audit for customized
+                    recommendations
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden"
+          >
+            <h3 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-
+                toggle="collapse"
+                data-bs-target="#collapseTwo"
+              >
+                <i class="bi bi-question-circle me-2 text-primary"></i> What are
+                the benefits of solar energy?
+              </button>
+            </h3>
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              aria-
+              labelledby="headingTwo"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                <p>Solar energy offers numerous benefits including:</p>
+                <ul>
+                  <li>Significant reduction in electricity bills</li>
+                  <li>Low maintenance costs and long system lifespan</li>
+                  <li>Protection against rising energy costs</li>
+                  <li>Increased property value</li>
+                  <li>Reduced carbon footprint and environmental impact</li>
+                  <li>Potential tax credits and rebates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-3">
+              <i
+                class="bi bi-lightning-charge-fill me-2"
+                style="color: var(--primary-color)"
+              ></i
+              >GreenVolt Energy
+            </h5>
+            <p class="text-muted">
+              Leading the transition to sustainable energy solutions since 2010.
+            </p>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-white"
+                ><i class="bi bi-facebook fs-5"></i
+              ></a>
+              <a href="#" class="text-white"
+                ><i class="bi bi-twitter fs-5"></i
+              ></a>
+              <a href="#" class="text-white"
+                ><i class="bi bi-linkedin fs-5"></i
+              ></a>
+              <a href="#" class="text-white"
+                ><i class="bi bi-instagram fs-5"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-3">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#home" class="text-muted text-decoration- none"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#about" class="text-muted text-decoration- none"
+                  >About Us</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#services" class="text-muted text-decoration- none"
+                  >Services</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#contact" class="text-muted text-decoration- none"
+                  >Contact</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-muted text-decoration-none"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5 class="text-uppercase mb-3">Contact Info</h5>
+            <ul class="list-unstyled text-muted">
+              <li class="mb-2">
+                <i class="bi bi-geo-alt-fill me-2 text-primary"></i> 123 Energy
+                Ave, Green City
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-telephone-fill me-2 text-primary"></i> (555)
+                123-4567
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-envelope-fill me-2 text-primary"></i>
+                info@greenvolt.com
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-clock-fill me-2 text-primary"></i> Mon-Fri:
+                9AM-5PM
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4 border-secondary" />
+        <div class="text-center">
+          <p class="mb-0 small">
+            &copy; 2025 GreenVolt Energy. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Simulate content loading
+      setTimeout(function () {
+        document.getElementById('loadingSpinner').classList.add('d-none');
+        document.getElementById('aboutContent').classList.remove('d-none');
+      }, 1500);
+      // Form validation
+      (function () {
+        'use strict';
+        window.addEventListener(
+          'load',
+          function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(
+              forms,
+              function (form) {
+                form.addEventListener(
+                  'submit',
+                  function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  },
+                  false
+                );
+              }
+            );
+          },
+          false
+        );
+      })();
+    </script>
+  </body>
+</html>
