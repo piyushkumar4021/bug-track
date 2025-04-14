@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic';
 
 import 'easymde/dist/easymde.min.css';
 import { bug } from '@prisma/client';
+import { useRouter } from 'next/navigation';
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
   ssr: false,
 });
@@ -23,6 +24,7 @@ export default function BugForm({ bug }: { bug?: bug }) {
     title: bug?.title || '',
     description: bug?.description || '',
   };
+  const router = useRouter();
 
   const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState<null | ErrorType>(null);
@@ -43,7 +45,16 @@ export default function BugForm({ bug }: { bug?: bug }) {
 
     setErrors({});
 
-    await axios.post(`${Config.API_URL}/bugs`, JSON.stringify(data));
+    if (bug) {
+      await axios.patch(
+        `${Config.API_URL}/bugs/${bug.id}`,
+        JSON.stringify(data)
+      );
+    } else {
+      await axios.post(`${Config.API_URL}/bugs`, JSON.stringify(data));
+    }
+
+    router.push('/bugs');
     setData(initialData);
   };
 
@@ -78,7 +89,7 @@ export default function BugForm({ bug }: { bug?: bug }) {
         </label>
       </div>
 
-      <Button>Create</Button>
+      <Button>{bug ? 'Update bug' : 'Create a new bug'}</Button>
     </form>
   );
 }
