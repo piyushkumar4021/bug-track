@@ -1,9 +1,9 @@
+import { Box, Flex, Grid } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
-import { prisma } from '../../../lib/prisma';
-import { Box, Button, Card, Flex, Grid, Heading, Text } from '@radix-ui/themes';
-import BugStatusBadge from '../../../components/BugStatusBadge';
-import ReactMarkdown from 'react-markdown';
-import Link from 'next/link';
+import { prisma } from '@/lib/prisma';
+import BugDeleteButton from './BugDeleteButton';
+import BugDisplay from './BugDisplay';
+import BugEditButton from './BugEditButton';
 
 interface Props {
   params: {
@@ -22,21 +22,15 @@ export default async function BugsDescriptionPage({ params }: Props) {
   if (!bug) return notFound();
 
   return (
-    <Grid columns={{ initial: '1', md: '2' }} gap={'4'}>
-      <Box>
-        <Heading>{bug.title}</Heading>
-        <Flex gapX={'3'} my={'2'}>
-          <BugStatusBadge status={bug.status} />
-          <Text>{bug.createdAt.toDateString()}</Text>
-        </Flex>
-        <Card className='prose' mt={'3'}>
-          <ReactMarkdown>{bug.description}</ReactMarkdown>
-        </Card>
+    <Grid columns={{ initial: '1', md: '5' }} gap={'6'}>
+      <Box className='lg:col-span-4'>
+        <BugDisplay bug={bug} />
       </Box>
       <Box>
-        <Button>
-          <Link href={`/bugs/${bug.id}/edit`}>Edit Bug</Link>
-        </Button>
+        <Flex direction='column' gapY='2'>
+          <BugEditButton bugId={bug.id} />
+          <BugDeleteButton bugId={bug.id} />
+        </Flex>
       </Box>
     </Grid>
   );

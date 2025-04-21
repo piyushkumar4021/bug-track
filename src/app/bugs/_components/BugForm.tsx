@@ -1,15 +1,14 @@
 'use client';
-import { TextField, Text, Button } from '@radix-ui/themes';
-import { FormEvent, useState } from 'react';
-import { bugSchema } from '@/schemas';
-import axios from 'axios';
 import ErrorMessage from '@/components/ErrorMessage';
 import Config from '@/lib/config';
-import dynamic from 'next/dynamic';
-
-import 'easymde/dist/easymde.min.css';
+import { bugSchema } from '@/schemas';
 import { bug } from '@prisma/client';
+import { Button, Text, TextField } from '@radix-ui/themes';
+import axios from 'axios';
+import 'easymde/dist/easymde.min.css';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
+import { FormEvent, useState } from 'react';
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
   ssr: false,
 });
@@ -59,7 +58,7 @@ export default function BugForm({ bug }: { bug?: bug }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='max-w-xl'>
+    <form onSubmit={handleSubmit} className='max-w-full'>
       <div className='flex flex-col gap-y-4 mb-5'>
         <label>
           <Text as='div' size='2' mb='1' weight='bold'>
