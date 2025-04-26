@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -28,6 +29,7 @@ export default function RootLayout({
           <main className='p-4'>
             <Container>{children}</Container>
           </main>
+          <Toaster position='bottom-right' />
         </Theme>
       </body>
     </html>

@@ -1,23 +1,35 @@
 'use client';
-
-import { Button, Dialog, Flex } from '@radix-ui/themes';
+import toast from 'react-hot-toast';
+import Config from '@/lib/config';
+import { Button, Dialog, Flex, Spinner } from '@radix-ui/themes';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import Config from '@/lib/config';
+import { useState } from 'react';
 
 export default function BugDeleteButton({ bugId }: { bugId: number }) {
   const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {
-    await axios.delete(`${Config.API_URL}/bugs/${bugId}`);
-    router.push('/bugs');
-    router.refresh();
+    setIsDeleting(true);
+    try {
+      await axios.delete(`${Config.API_URL}/bugs/${bugId}`);
+      router.push('/bugs');
+      router.refresh();
+      toast.success('Bug successfuly deleted.');
+    } catch {
+      toast.error('an error occured.');
+    }
+    setIsDeleting(false);
   };
 
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Button color='red'>Delete Bug</Button>
+        <Button color='red' disabled={isDeleting}>
+          Delete Bug
+          {isDeleting && <Spinner />}
+        </Button>
       </Dialog.Trigger>
 
       <Dialog.Content>

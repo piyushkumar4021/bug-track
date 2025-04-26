@@ -1,49 +1,35 @@
 'use client';
+import toast from 'react-hot-toast';
 import ErrorMessage from '@/components/ErrorMessage';
-import Config from '@/lib/config';
 import { bugSchema } from '@/schemas';
-import { bug } from '@prisma/client';
-import { Button, Text, TextField } from '@radix-ui/themes';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Bug } from '@prisma/client';
+import { Button, Spinner, Text, TextField } from '@radix-ui/themes';
 import axios from 'axios';
 import 'easymde/dist/easymde.min.css';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import { FormEvent, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import Config from '@/lib/config';
+import dynamic from 'next/dynamic';
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
   ssr: false,
 });
 
-interface ErrorType {
-  title?: string;
-  description?: string;
+interface Inputs {
+  title: string;
+  description: string;
 }
 
-export default function BugForm({ bug }: { bug?: bug }) {
-  const initialData = {
-    title: bug?.title || '',
-    description: bug?.description || '',
-  };
+export default function BugForm({ bug }: { bug?: Bug }) {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { isSubmitting, errors },
+  } = useForm<Inputs>({ resolver: zodResolver(bugSchema) });
   const router = useRouter();
 
-  const [data, setData] = useState(initialData);
-  const [errors, setErrors] = useState<null | ErrorType>(null);
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const validation = bugSchema.safeParse(data);
-
-    if (!validation.success) {
-      const newErrors = validation.error.errors.reduce(
-        (obj, err) => Object.assign(obj, { [err.path[0]]: err.message }),
-        {}
-      );
-
-      return setErrors(newErrors);
-    }
-
-    setErrors({});
-
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (bug) {
       await axios.patch(
         `${Config.API_URL}/bugs/${bug.id}`,
@@ -54,41 +40,37 @@ export default function BugForm({ bug }: { bug?: bug }) {
     }
 
     router.push('/bugs');
-    setData(initialData);
+    router.refresh();
+    toast.success(`Bug successfuly ${bug ? 'updated' : 'created'}.`);
   };
 
   return (
-    <form onSubmit={handleSubmit} className='max-w-full'>
+    <form onSubmit={handleSubmit(onSubmit)} className='max-w-full'>
       <div className='flex flex-col gap-y-4 mb-5'>
         <label>
           <Text as='div' size='2' mb='1' weight='bold'>
             Title
           </Text>
-          <TextField.Root
-            placeholder='Your bug title'
-            value={data.title}
-            onChange={(e) =>
-              setData((prevData) => ({ ...prevData, title: e.target.value }))
-            }
-          />
-          <ErrorMessage>{errors?.title}</ErrorMessage>
+          <TextField.Root placeholder='Your bug title' {...register('title')} />
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </label>
         <label>
           <Text as='div' size='2' mb='1' weight='bold'>
             Description
           </Text>
-          <SimpleMDE
-            placeholder='Your bug description'
-            value={data.description}
-            onChange={(value) =>
-              setData((prevData) => ({ ...prevData, description: value }))
-            }
+          <Controller
+            name='description'
+            control={control}
+            render={({ field }) => <SimpleMDE {...field} />}
           />
-          <ErrorMessage>{errors?.description}</ErrorMessage>
+          <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </label>
       </div>
 
-      <Button>{bug ? 'Update bug' : 'Create a new bug'}</Button>
+      <Button disabled={isSubmitting}>
+        {bug ? 'Update bug' : 'Create a new bug'}
+        {isSubmitting && <Spinner />}
+      </Button>
     </form>
   );
 }
