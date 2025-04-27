@@ -5,6 +5,7 @@ import './globals.css';
 import '@radix-ui/themes/styles.css';
 import Navbar from './Navbar';
 import { Theme, Container } from '@radix-ui/themes';
+import AuthProvider from './auth/Provider';
 
 const inter = Inter({
   variable: '--font-geist-sans',
@@ -24,13 +25,15 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.variable} antialiased`}>
-        <Theme>
-          <Navbar />
-          <main className='p-4'>
-            <Container>{children}</Container>
-          </main>
-          <Toaster position='bottom-right' />
-        </Theme>
+        <AuthProvider>
+          <Theme>
+            <Navbar />
+            <main className='p-4'>
+              <Container>{children}</Container>
+            </main>
+            <Toaster position='bottom-right' />
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   );
