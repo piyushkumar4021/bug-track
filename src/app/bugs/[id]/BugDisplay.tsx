@@ -1,9 +1,9 @@
-import { bug } from '@prisma/client';
 import { Box, Card, Flex, Heading, Text } from '@radix-ui/themes';
 import ReactMarkdown from 'react-markdown';
 import BugStatusBadge from '@/components/BugStatusBadge';
+import { Bug } from '@prisma/client';
 
-export default function BugDisplay({ bug }: { bug: bug }) {
+export default function BugDisplay({ bug }: { bug: Bug }) {
   return (
     <Box>
       <Heading>{bug.title}</Heading>
