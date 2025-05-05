@@ -1,16 +1,16 @@
 'use client';
-import toast from 'react-hot-toast';
 import ErrorMessage from '@/components/ErrorMessage';
+import Config from '@/lib/config';
 import { bugSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Bug } from '@prisma/client';
 import { Button, Spinner, Text, TextField } from '@radix-ui/themes';
 import axios from 'axios';
-import 'easymde/dist/easymde.min.css';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import Config from '@/lib/config';
-import dynamic from 'next/dynamic';
+import toast from 'react-hot-toast';
+import 'easymde/dist/easymde.min.css';
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
   ssr: false,
 });
@@ -30,18 +30,22 @@ export default function BugForm({ bug }: { bug?: Bug }) {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    if (bug) {
-      await axios.patch(
-        `${Config.API_URL}/bugs/${bug.id}`,
-        JSON.stringify(data)
-      );
-    } else {
-      await axios.post(`${Config.API_URL}/bugs`, JSON.stringify(data));
+    try {
+      if (bug) {
+        await axios.patch(
+          `${Config.API_URL}/bugs/${bug.id}`,
+          JSON.stringify(data)
+        );
+      } else {
+        await axios.post(`${Config.API_URL}/bugss`, JSON.stringify(data));
+      }
+      toast.success(`Bug successfuly ${bug ? 'updated' : 'created'}.`);
+    } catch {
+      toast.error('An unexpected error occured.');
+    } finally {
+      router.push('/bugs');
+      router.refresh();
     }
-
-    router.push('/bugs');
-    router.refresh();
-    toast.success(`Bug successfuly ${bug ? 'updated' : 'created'}.`);
   };
 
   return (

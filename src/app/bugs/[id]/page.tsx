@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import BugDeleteButton from './BugDeleteButton';
 import BugDisplay from './BugDisplay';
 import BugEditButton from './BugEditButton';
-import SessionOnly from '../../../components/SessionOnly';
+import SessionOnly from '@/components/SessionOnly';
 
 interface Props {
   params: {

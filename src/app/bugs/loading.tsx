@@ -1,13 +1,10 @@
 import { Skeleton, Table } from '@radix-ui/themes';
-import BugsActions from './BugsActions';
-
-const skeletons = [1, 2, 3];
 
 export default function BugsPageSkeleton() {
+  const skeletons = [1, 2, 3];
+
   return (
     <div>
-      <BugsActions />
-
       <Table.Root variant='surface' size={'3'}>
         <Table.Header>
           <Table.Row>
@@ -26,12 +23,12 @@ export default function BugsPageSkeleton() {
         <Table.Body>
           {skeletons.map((i) => (
             <Table.Row key={i}>
-              <Table.RowHeaderCell>
+              <Table.Cell>
                 <Skeleton />
                 <div className='md:hidden'>
                   <Skeleton />
                 </div>
-              </Table.RowHeaderCell>
+              </Table.Cell>
               <Table.Cell className='hidden md:table-cell'>
                 <Skeleton />
               </Table.Cell>

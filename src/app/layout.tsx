@@ -5,7 +5,7 @@ import './globals.css';
 import '@radix-ui/themes/styles.css';
 import Navbar from './Navbar';
 import { Theme, Container } from '@radix-ui/themes';
-import AuthProvider from './auth/Provider';
+import AuthProvider from './auth/AuthProvider';
 
 const inter = Inter({
   variable: '--font-geist-sans',

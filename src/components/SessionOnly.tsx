@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../authOptions';
+import { authOptions } from '../app/auth/authOptions';
 import { PropsWithChildren } from 'react';
 
 export default async function SessionOnly({ children }: PropsWithChildren) {

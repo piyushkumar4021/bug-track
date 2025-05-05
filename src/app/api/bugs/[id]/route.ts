@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { bugSchema } from '@/schemas';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/authOptions';
+import { authOptions } from '@/app/auth/authOptions';
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
+  const { id } = params;
   const validatedId = parseInt(id);
 
   if (!validatedId)
