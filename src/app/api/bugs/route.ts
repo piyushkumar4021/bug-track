@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { bugSchema } from '@/schemas';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/authOptions';
 
 export async function GET() {
   try {
@@ -12,6 +14,13 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json(
+      { error: 'user unauthenticated' },
+      { status: 401 }
+    );
+
   let body;
   try {
     body = await req.json();

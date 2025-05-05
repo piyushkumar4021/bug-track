@@ -3,13 +3,16 @@ import BugStatusBadge from '../../components/BugStatusBadge';
 import Link from '../../components/Link';
 import { prisma } from '../../lib/prisma';
 import BugsActions from './BugsActions';
+import SessionOnly from '../../components/SessionOnly';
 
 export default async function BugsPage() {
   const bugs = await prisma.bug.findMany();
 
   return (
     <div>
-      <BugsActions />
+      <SessionOnly>
+        <BugsActions />
+      </SessionOnly>
 
       <Table.Root variant='surface' size={'3'}>
         <Table.Header>

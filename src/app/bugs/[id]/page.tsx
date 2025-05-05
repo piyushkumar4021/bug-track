@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import BugDeleteButton from './BugDeleteButton';
 import BugDisplay from './BugDisplay';
 import BugEditButton from './BugEditButton';
+import SessionOnly from '../../../components/SessionOnly';
 
 interface Props {
   params: {
@@ -26,12 +27,14 @@ export default async function BugsDescriptionPage({ params }: Props) {
       <Box className='lg:col-span-4'>
         <BugDisplay bug={bug} />
       </Box>
-      <Box>
-        <Flex direction='column' gapY='2'>
-          <BugEditButton bugId={bug.id} />
-          <BugDeleteButton bugId={bug.id} />
-        </Flex>
-      </Box>
+      <SessionOnly>
+        <Box>
+          <Flex direction='column' gapY='2'>
+            <BugEditButton bugId={bug.id} />
+            <BugDeleteButton bugId={bug.id} />
+          </Flex>
+        </Box>
+      </SessionOnly>
     </Grid>
   );
 }

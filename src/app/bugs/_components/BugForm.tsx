@@ -26,7 +26,7 @@ export default function BugForm({ bug }: { bug?: Bug }) {
     handleSubmit,
     control,
     formState: { isSubmitting, errors },
-  } = useForm<Inputs>({ resolver: zodResolver(bugSchema) });
+  } = useForm<Inputs>({ resolver: zodResolver(bugSchema), defaultValues: bug });
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
