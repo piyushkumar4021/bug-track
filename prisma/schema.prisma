@@ -11,12 +11,14 @@ datasource db {
 }
 
 model Bug {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  status      Status   @default(OPEN)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id               Int      @id @default(autoincrement())
+  title            String
+  description      String
+  status           Status   @default(OPEN)
+  assignedToUserId String?
+  assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id])
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
 
 enum Status {
@@ -35,6 +37,7 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+  assignedBugs  Bug[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
