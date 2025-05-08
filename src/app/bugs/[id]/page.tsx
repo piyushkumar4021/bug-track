@@ -5,22 +5,20 @@ import BugDeleteButton from './BugDeleteButton';
 import BugDisplay from './BugDisplay';
 import BugEditButton from './BugEditButton';
 import SessionOnly from '@/components/SessionOnly';
+import AssigneeSelect from '@/components/AssigneeSelect';
 
 interface Props {
-  params: {
-    id: string;
-  };
+  params: { id: string };
 }
 
 export default async function BugsDescriptionPage({ params }: Props) {
-  let bug = null;
-  try {
-    bug = await prisma.bug.findUnique({ where: { id: parseInt(params.id) } });
-  } catch {
-    notFound();
-  }
+  const id = +params.id;
+  if (Number.isNaN(id)) return notFound();
 
+  const bug = await prisma.bug.findUnique({ where: { id } });
   if (!bug) return notFound();
+
+  const users = await prisma.user.findMany();
 
   return (
     <Grid columns={{ initial: '1', md: '5' }} gap={'6'}>
@@ -30,6 +28,7 @@ export default async function BugsDescriptionPage({ params }: Props) {
       <SessionOnly>
         <Box>
           <Flex direction='column' gapY='2'>
+            <AssigneeSelect users={users} />
             <BugEditButton bugId={bug.id} />
             <BugDeleteButton bugId={bug.id} />
           </Flex>
